@@ -23,8 +23,12 @@ This project is a presentation helper tool that leverages speech recognition and
 
 ### Installation
 
-1. Install the required libraries using `pip install <library_name>`.
-2. Set up your LLM API access according to the provider's instructions.
+1. Install the required libraries using `conda env create -f environment.yml`.
+2. Set up your LLM API access by getting a Google Gemini API key.
+3. Create a .env file outside of the src folder and format the .env like this
+```bash
+API_KEY="INSERT-YOUR-API-KEY-HERE"
+```
 
 ### Usage
 
