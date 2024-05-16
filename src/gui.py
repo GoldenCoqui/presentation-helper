@@ -8,8 +8,6 @@ from speech_to_text import speech_text
 
 def on_submit(user_data, transcript_label, helper_label):
 
-    transcript_label.config(text="Speak Now:")  # Update user input label
-
     speech_text()
     llm_advice(user_data)
 
@@ -32,6 +30,9 @@ def gui_maker(user_data):
     app = tk.Tk()
     app.title("Presentation Helper")
 
+    # Sets the window size to 800 pixels wide and 600 pixels high
+    app.geometry("800x600")  
+
     # Set the application icon using wm_iconbitmap
     favicon = PhotoImage(file = "../data/img/cursor.png")
     app.iconphoto(False, favicon)
@@ -44,16 +45,16 @@ def gui_maker(user_data):
 
     # Create a button widget
     button = tk.Button(
-        output_frame, text="Submit", command=lambda: on_submit(user_data, transcript_label, helper_label)
+        output_frame, text="Start Helper", width=80, height=10, font=100, background="lightblue", command=lambda: on_submit(user_data, transcript_label, helper_label)
         )
     button.pack()
 
 
     # Labels for displaying user input, cardkingdom output, and future finder output
-    transcript_label = tk.Label(output_frame, text="Transcript")
+    transcript_label = tk.Label(output_frame, text="")
     transcript_label.pack(side=tk.LEFT)
 
-    helper_label = tk.Label(output_frame, text="Helper Advice")
+    helper_label = tk.Label(output_frame, text="")
     helper_label.pack(side=tk.LEFT)
 
 

@@ -23,9 +23,12 @@ def llm_advice(user_input):
     # enables chat feature to remeber past prompts
     chat = model.start_chat(history=[])
 
+    with open(user_input, 'r') as file:
+      user_data = file.read()
+
 
     chat.send_message(
-      f" This is a presentation transcript I am working on\n\n {cardkingdom_output}"
+      f" This is a presentation transcript I am working on\n\n {user_data}"
       )
 
     # chat.send_message(
@@ -33,28 +36,13 @@ def llm_advice(user_input):
     # )
 
     response = chat.send_message(
-      "find cards from card kingdom with a price of $0.00 (it must be EXACTLY zero, if it is $0.01 and above it is avaliable) and say that they are unavaliable and from what list"
+      "Please give advice on how to improve this presentation as well as give advice on public speaking."
     )
 
 
-
-    with open("../data/llm_output/llm-compare.txt", 'w', encoding='utf-8') as file:
+    with open("../data/processed/helper_advice.txt", 'w', encoding='utf-8') as file:
       file.write(f"{response.text}\n\n")
   
-    response = chat.send_message(
-      "find cards from tcg player with a price of $0.00 (it must be EXACTLY zero, if it is $0.01 and above it is avaliable) and say that they are unavaliable and from what list"
-    )
-
-    with open("../data/llm_output/llm-compare.txt", 'a', encoding='utf-8') as file:
-      file.write(f"{response.text}\n\n")
-
-    response = chat.send_message(
-      "Using the given information what would you suggest as getting the best deal"
-    )
-
-    with open("../data/llm_output/llm-compare.txt", 'a', encoding='utf-8') as file:
-      file.write(f"{response.text}\n\n")
-
     
   except Exception as e:
     print(f"Error Summarizing: {str(e)}")
